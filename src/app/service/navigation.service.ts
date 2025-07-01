@@ -23,28 +23,18 @@ export class NavigationService {
   activeModule$ = this.activeModuleSubject.asObservable();
 
   private modules: Module[] = [
+ 
     {
-      id: 'dashboard',
-      name: 'Dashboard',
-      icon: 'dashboard',
-      route: '/dashboard',
-      description : 'Vista general del sistema'
-    },
-    {
-      id: 'inventory',
-      name: 'Inventario',
-      icon: 'inventory',
-      route: '/inventory',
-      description : 'Gestión de productos y almacén',
+      id: 'contabilidad',
+      name: 'Contabilidad',
+      icon: 'receipt_long',
+      route: '/contabilidad',
+      description: 'Control financiero y registro de operaciones contables',
+
       submodules: [
-        { id: 'products', name: 'Productos', icon: 'shopping_bag', route: '/inventory/products' },
-        { id: 'stock', name: 'Stock', icon: 'warehouse', route: '/inventory/stock' },
-        { id: 'warehouses', name: 'Almacenes', icon: 'store', route: '/inventory/warehouses' },
-        { id: 'movements', name: 'Movimientos', icon: 'compare_arrows', route: '/inventory/movements' },
-        { id: 'suppliers', name: 'Proveedores', icon: 'local_shipping', route: '/inventory/suppliers' }
+        { id: 'products', name: 'Productos', icon: 'shopping_bag', route: '/contabilidad/products' },
       ]
     },
-    // ... otros módulos con sus submodules
   ];
 
   getModules(): Module[] {

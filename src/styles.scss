@@ -25,9 +25,6 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-
-
-
 .c-sidenav-container {
   height: 100vh;
 
@@ -80,6 +77,9 @@ body {
       padding-top: 0.75rem;
       padding-bottom: 0.75rem;
       transition: 300ms all ease;
+      gap: 15px;
+
+
 
       .icon-right {
         font-size: 15px;
@@ -91,19 +91,18 @@ body {
       transition: 300ms all ease;
       background: #0ea6b930;
 
+
+
       mat-icon,
       h1 {
         color: #0ea6b9;
       }
     }
-
-
   }
 
   .info-card-menu {
     display: flex;
     flex-direction: column;
-    padding-left: 15px;
 
     h1 {
       font-weight: 500;
@@ -127,6 +126,9 @@ body {
     cursor: pointer;
   }
 
+  .icon-menu {
+    width: 40px !important;
+  }
 
   .c-sub-menu-title {
     display: flex;
@@ -144,10 +146,14 @@ body {
     }
   }
 
-  .sidenav-footer {
+  .c-sidenav-footer {
     margin-top: auto;
     padding: 16px;
     border-top: 1px solid rgba(0, 0, 0, 0.12);
+    right: 0;
+    position: absolute;
+    left: 0;
+    bottom: 0;
 
     .user-info {
       display: flex;

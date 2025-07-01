@@ -15,7 +15,7 @@
       <div class="modules-grid">
         <div class="c-card-menu" *ngFor="let module of modules" (click)="selectModule(module.id)"
           [routerLink]="module.route">
-          <mat-icon mat-card-avatar>{{module.icon}}</mat-icon>
+          <mat-icon class="icon-menu" mat-card-avatar>{{module.icon}}</mat-icon>
           <div class="info-card-menu">
             <h1>{{module.name}}</h1>
             <h2>{{module?.description || '-'}}</h2>
@@ -35,7 +35,7 @@
         </div>
 
         <div class="c-sub-menu-title">
-          <mat-icon mat-card-avatar>{{activeModule?.icon || ''}}</mat-icon>
+          <mat-icon class="icon-menu " mat-card-avatar>{{activeModule?.icon || ''}}</mat-icon>
           <div class="info-card-menu">
             <h1>{{activeModule?.name}}</h1>
             <h2>{{activeModule?.description || '-'}}</h2>
@@ -51,12 +51,12 @@
       </mat-nav-list>
     </ng-template>
 
-    <!-- <div class="sidenav-footer">
+    <div class="c-sidenav-footer">
       <div class="user-info">
         <mat-icon>account_circle</mat-icon>
         <span>Admin</span>
       </div>
-    </div> -->
+    </div>
   </mat-sidenav>
 
   <mat-sidenav-content>
