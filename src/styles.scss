@@ -6,13 +6,20 @@
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, span, p {
+h1,
+h2,
+h3,
+h4,
+h5,
+span,
+p {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
   line-height: 20px !important;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
@@ -86,7 +93,8 @@ html, body {
       transition: 300ms all ease;
       background: #0ea6b930;
 
-      mat-icon, h1 {
+      mat-icon,
+      h1 {
         color: #0ea6b9;
       }
     }
@@ -148,7 +156,7 @@ html, body {
   .section-accordion {
     flex-grow: 1;
     overflow-y: auto;
-    margin-bottom: 60px;
+    margin-bottom: 45px;
 
     .mat-expansion-panel {
       box-shadow: none !important;
@@ -161,7 +169,8 @@ html, body {
 
         .section-icon {
           margin-right: 16px;
-          color: #5c6bc0;
+          // color: #5c6bc0;
+          color: #0ea6b9;
         }
 
         .section-title {
@@ -195,6 +204,35 @@ html, body {
           }
         }
       }
+    }
+  }
+
+  .c-sub-menu-title {
+    padding: 16px;
+
+    h1 {
+      font-size: 18px;
+      font-weight: 500;
+    }
+
+    h2 {
+      font-size: 13px;
+      color: #666;
+    }
+  }
+
+  .c-return-menu {
+    padding-left: 0;
+    border-radius: 0;
+    margin: 0;
+
+    mat-icon {
+      color: #0ea6b9;
+    }
+
+    span {
+      font-weight: 500;
+      color: #333;
     }
   }
 
@@ -232,4 +270,22 @@ mat-toolbar {
 hr {
   margin-bottom: 10px;
   border-color: rgba(0, 0, 0, 0.08);
+}
+
+.mat-drawer-inner-container {
+  height: calc(100vh - 90px) !important;
+  overflow: unset !important;
+}
+
+.mdc-list-item__primary-text {
+  font-size: 14px !important;
+}
+
+.mat-mdc-nav-list .mat-mdc-list-item {
+  height: 35px !important;
+  padding-left: 10px !important;
+}
+
+.mat-mdc-list-base {
+  padding-top: 0 !important;
 }
