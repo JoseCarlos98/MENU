@@ -6,6 +6,7 @@ export interface Module {
   name: string;
   icon: string;
   route: string;
+  description?: string;
   submodules?: Submodule[];
 }
 
@@ -27,19 +28,14 @@ export class NavigationService {
       name: 'Dashboard',
       icon: 'dashboard',
       route: '/dashboard',
-        submodules: [
-        { id: 'products', name: 'Productos', icon: 'shopping_bag', route: '/inventory/products' },
-        { id: 'stock', name: 'Stock', icon: 'warehouse', route: '/inventory/stock' },
-        { id: 'warehouses', name: 'Almacenes', icon: 'store', route: '/inventory/warehouses' },
-        { id: 'movements', name: 'Movimientos', icon: 'compare_arrows', route: '/inventory/movements' },
-        { id: 'suppliers', name: 'Proveedores', icon: 'local_shipping', route: '/inventory/suppliers' }
-      ]
+      description : 'Vista general del sistema'
     },
     {
       id: 'inventory',
       name: 'Inventario',
       icon: 'inventory',
       route: '/inventory',
+      description : 'Gestión de productos y almacén',
       submodules: [
         { id: 'products', name: 'Productos', icon: 'shopping_bag', route: '/inventory/products' },
         { id: 'stock', name: 'Stock', icon: 'warehouse', route: '/inventory/stock' },

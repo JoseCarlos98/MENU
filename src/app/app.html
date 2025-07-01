@@ -1,56 +1,62 @@
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #sidenav 
-               [mode]="'over'" 
-               [opened]="isSidebarOpen"
-               class="sidenav">
+<mat-sidenav-container class="c-sidenav-container">
+  <mat-sidenav #sidenav [mode]="'over'" [opened]="isSidebarOpen" class="sidenav">
     <div class="sidenav-header">
+      <mat-icon>business</mat-icon>
       <h1 class="logo">
-        <mat-icon>business</mat-icon>
         ERP SAAS
       </h1>
     </div>
 
     <ng-container *ngIf="!activeModule; else moduleMenu">
       <!-- Menú principal -->
+
+      <h1 class="menu-info">MÓDULOS PRINCIPALES</h1>
+
       <div class="modules-grid">
-        <mat-card *ngFor="let module of modules" 
-                  class="module-card" 
-                  (click)="selectModule(module.id)"
-                  [routerLink]="module.route">
-          <mat-card-header>
-            <mat-icon mat-card-avatar>{{module.icon}}</mat-icon>
-            <mat-card-title>{{module.name}}</mat-card-title>
-          </mat-card-header>
-        </mat-card>
+        <div class="c-card-menu" *ngFor="let module of modules" (click)="selectModule(module.id)"
+          [routerLink]="module.route">
+          <mat-icon mat-card-avatar>{{module.icon}}</mat-icon>
+          <div class="info-card-menu">
+            <h1>{{module.name}}</h1>
+            <h2>{{module?.description || '-'}}</h2>
+          </div>
+          <mat-icon *ngIf="module.submodules?.length" class="icon-right" mat-card-avatar>arrow_forward_ios</mat-icon>
+        </div>
       </div>
     </ng-container>
+
 
     <ng-template #moduleMenu>
       <!-- Menú del módulo seleccionado -->
       <mat-nav-list>
-        <mat-list-item (click)="returnToMainMenu()">
+        <div class="c-return-menu" (click)="returnToMainMenu()">
           <mat-icon>arrow_back</mat-icon>
           <span>Menú Principal</span>
-        </mat-list-item>
-        
-        <mat-divider></mat-divider>
-        
-        <h3 matSubheader>{{activeModule?.name}}</h3>
-        
-        <a mat-list-item *ngFor="let submodule of activeModule?.submodules || []" 
-           [routerLink]="submodule.route">
+        </div>
+
+        <div class="c-sub-menu-title">
+          <mat-icon mat-card-avatar>{{activeModule?.icon || ''}}</mat-icon>
+          <div class="info-card-menu">
+            <h1>{{activeModule?.name}}</h1>
+            <h2>{{activeModule?.description || '-'}}</h2>
+          </div>
+        </div>
+
+        <hr>
+
+        <a mat-list-item *ngFor="let submodule of activeModule?.submodules || []" [routerLink]="submodule.route">
           <mat-icon matListItemIcon>{{submodule.icon}}</mat-icon>
           <span matListItemTitle>{{submodule.name}}</span>
         </a>
       </mat-nav-list>
     </ng-template>
 
-    <div class="sidenav-footer">
+    <!-- <div class="sidenav-footer">
       <div class="user-info">
         <mat-icon>account_circle</mat-icon>
         <span>Admin</span>
       </div>
-    </div>
+    </div> -->
   </mat-sidenav>
 
   <mat-sidenav-content>
@@ -58,18 +64,18 @@
       <button mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
       </button>
-      
+
       <span class="spacer"></span>
-      
+
       <button mat-icon-button>
         <mat-icon>notifications</mat-icon>
       </button>
-      
+
       <button mat-icon-button>
         <mat-icon>account_circle</mat-icon>
       </button>
     </mat-toolbar>
-    
+
     <main>
       <router-outlet></router-outlet>
     </main>

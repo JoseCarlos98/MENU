@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { Dashboard } from './pages/dashboard/dashboard';
 // import { DashboardComponent } from './components/dashboard/dashboard.component';
 // import { InventoryComponent } from './components/modules/inventory/inventory.component';
 // import { ProductsComponent } from './components/modules/inventory/products/products.component';
@@ -12,7 +11,7 @@ export const APP_ROUTES: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   
   // Dashboard
-  { path: 'dashboard', component: Dashboard },
+  // { path: 'dashboard', component: Dashboard },
   
   // Inventario
 //   { 

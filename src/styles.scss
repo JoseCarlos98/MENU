@@ -1,64 +1,169 @@
 @use '@angular/material' as mat;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-html, body { 
-  height: 100%; 
+h1,
+h2,
+h3,
+h4,
+h5,
+span,
+p {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  line-height: 20px !important;
+}
+
+html,
+body {
+  height: 100%;
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.sidenav-container {
+
+
+
+.c-sidenav-container {
   height: 100vh;
-}
 
-.sidenav {
-  width: 280px;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-}
+  .sidenav {
+    width: 200px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
 
-.sidenav-header {
-  padding: 16px;
-  margin-bottom: 16px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-  
-  .logo {
+
+    .sidenav-header {
+      padding: 16px;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      display: flex;
+      gap: 10px;
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 500;
+        color: #0ea6b9;
+      }
+    }
+
+
+    .menu-info {
+      font-weight: 500;
+      color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+      margin: 10px 0 5px 0;
+      font-size: 12px;
+    }
+  }
+
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    padding-bottom: 10px;
+
+    .c-card-menu {
+      display: flex;
+      cursor: pointer;
+      align-items: center;
+      border-radius: 0.5rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+      padding-top: 0.75rem;
+      padding-bottom: 0.75rem;
+      transition: 300ms all ease;
+
+      .icon-right {
+        font-size: 15px;
+        margin-top: 15px;
+      }
+    }
+
+    .c-card-menu:hover {
+      transition: 300ms all ease;
+      background: #0ea6b930;
+
+      mat-icon,
+      h1 {
+        color: #0ea6b9;
+      }
+    }
+
+
+  }
+
+  .info-card-menu {
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
+
+    h1 {
+      font-weight: 500;
+      font-size: 17px;
+      color: #333;
+    }
+
+    h2 {
+      color: rgb(107 114 128 / var(--tw-text-opacity, 1));
+      font-size: 12px;
+      line-height: 14px !important;
+      margin-top: 5px;
+    }
+  }
+
+  .c-return-menu {
     display: flex;
     align-items: center;
-    gap: 8px;
-    margin: 0;
-    font-size: 1.5rem;
-    font-weight: 500;
+    height: 50px;
+    gap: 10px;
+    cursor: pointer;
+  }
+
+
+  .c-sub-menu-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+    margin-bottom: 10px;
+
+    mat-icon {
+      color: #0ea6b9;
+    }
+
+    h1 {
+      color: #0ea6b9;
+    }
+  }
+
+  .sidenav-footer {
+    margin-top: auto;
+    padding: 16px;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
   }
 }
 
-.modules-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 16px;
-  padding: 8px;
-}
-
-.module-card {
+.c-card-menu {
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
-  
+
   &:hover {
     transform: translateY(-4px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  }
-}
-
-.sidenav-footer {
-  margin-top: auto;
-  padding: 16px;
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
-  
-  .user-info {
-    display: flex;
-    align-items: center;
-    gap: 8px;
   }
 }
 
@@ -72,19 +177,12 @@ mat-toolbar {
   z-index: 2;
 }
 
-main {
-  padding: 24px;
+
+.mat-drawer.mat-drawer-opened.mat-drawer-opened {
+  width: 285px !important;
 }
 
-.dashboard-container, .module-container, .submodule-container {
-  padding: 24px;
-}
 
-.metric-card {
-  width: 100%;
-  height: 100%;
-}
-
-.actions {
-  margin-bottom: 16px;
+hr {
+  margin-bottom: 10px;
 }
