@@ -58,8 +58,8 @@ export class App implements OnInit {
   }
 
   toggleSection(sectionId: string, event: Event): void {
-    event.stopPropagation();
-    event.preventDefault();
+    // event.stopPropagation();
+    // event.preventDefault();
     this.expandedSections[sectionId] = !this.expandedSections[sectionId];
   }
 
