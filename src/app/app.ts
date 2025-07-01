@@ -57,8 +57,9 @@ export class App implements OnInit {
     this.navigationService.setActiveModule(null);
   }
 
-  toggleSection(sectionId: string, event: Event) {
+  toggleSection(sectionId: string, event: Event): void {
     event.stopPropagation();
+    event.preventDefault();
     this.expandedSections[sectionId] = !this.expandedSections[sectionId];
   }
 

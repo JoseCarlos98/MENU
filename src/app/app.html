@@ -43,12 +43,10 @@
         <hr>
 
         <mat-accordion displayMode="flat" class="section-accordion">
-          <mat-expansion-panel *ngFor="let section of activeModule?.sections || []" 
-                              [expanded]="expandedSections[section.id]"
-                              (opened)="expandedSections[section.id] = true"
-                              (closed)="expandedSections[section.id] = false">
-        <mat-expansion-panel-header (click)="toggleSection(section.id, $event)">
-              <mat-panel-title>
+          <mat-expansion-panel *ngFor="let section of activeModule?.sections || []"
+            [expanded]="expandedSections[section.id]">
+            <mat-expansion-panel-header>
+              <mat-panel-title (click)="toggleSection(section.id, $event)">
                 <mat-icon class="section-icon">folder</mat-icon>
                 <span class="section-title">{{section.name}}</span>
               </mat-panel-title>
