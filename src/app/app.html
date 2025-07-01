@@ -47,7 +47,7 @@
                               [expanded]="expandedSections[section.id]"
                               (opened)="expandedSections[section.id] = true"
                               (closed)="expandedSections[section.id] = false">
-            <mat-expansion-panel-header (click)="toggleSection(section.id)">
+        <mat-expansion-panel-header (click)="toggleSection(section.id, $event)">
               <mat-panel-title>
                 <mat-icon class="section-icon">folder</mat-icon>
                 <span class="section-title">{{section.name}}</span>

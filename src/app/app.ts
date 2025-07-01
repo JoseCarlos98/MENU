@@ -32,7 +32,7 @@ export class App implements OnInit {
   modules: Module[] = [];
   activeModule: Module | null = null;
   isSidebarOpen = true;
-  expandedSections: {[key: string]: boolean} = {};
+  expandedSections: { [key: string]: boolean } = {};
 
   constructor(private navigationService: NavigationService) { }
 
@@ -57,7 +57,9 @@ export class App implements OnInit {
     this.navigationService.setActiveModule(null);
   }
 
-  toggleSection(sectionId: string) {
+  toggleSection(sectionId: string, event: Event) {
+    event.stopPropagation();
     this.expandedSections[sectionId] = !this.expandedSections[sectionId];
   }
+
 }
