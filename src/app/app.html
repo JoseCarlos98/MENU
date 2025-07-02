@@ -7,89 +7,80 @@
       </h1>
     </div>
 
-    <ng-container *ngIf="!activeModule; else moduleMenu">
-      <!-- Menú principal -->
+    <!-- Nivel 1 - Módulos Principales -->
+    <ng-container *ngIf="!activeModule && !activeSubModule">
       <h1 class="menu-info">MÓDULOS PRINCIPALES</h1>
-
       <div class="modules-grid">
-        <div class="c-card-menu" *ngFor="let module of modules" (click)="selectModule(module.id)"
-          [routerLink]="module.route">
-          <mat-icon class="icon-menu" mat-card-avatar>{{module.icon}}</mat-icon>
+        <div class="c-card-menu" *ngFor="let module of modules" (click)="selectModule(module)">
+          <mat-icon class="icon-menu">{{module.icon}}</mat-icon>
           <div class="info-card-menu">
             <h1>{{module.name}}</h1>
-            <h2>{{module?.description || '-'}}</h2>
+            <h2>{{module.description}}</h2>
           </div>
-          <mat-icon *ngIf="module.sections?.length" class="icon-right" mat-card-avatar>arrow_forward_ios</mat-icon>
+          <mat-icon *ngIf="module.subModules?.length" class="icon-right">arrow_forward_ios</mat-icon>
         </div>
       </div>
     </ng-container>
 
-    <ng-template #moduleMenu>
-      <!-- Menú del módulo seleccionado -->
-      <div class="module-menu-container">
-        <div class="c-return-menu" (click)="returnToMainMenu()">
-          <mat-icon>arrow_back</mat-icon>
-          <span>Menú Principal</span>
-        </div>
+    <!-- Nivel 2 - Submódulos -->
+    <ng-container *ngIf="activeModule && !activeSubModule">
+      <div class="c-return-menu" (click)="returnToMainMenu()">
+        <mat-icon>arrow_back</mat-icon>
+        <span>Menú Principal</span>
+      </div>
 
-        <div class="c-sub-menu-title">
-          <mat-icon class="icon-menu">{{activeModule?.icon || ''}}</mat-icon>
+      <div class="c-sub-menu-title">
+        <mat-icon class="icon-menu">{{activeModule.icon}}</mat-icon>
+        <div class="info-card-menu">
+          <h1>{{activeModule.name}}</h1>
+          <h2>{{activeModule.description}}</h2>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="modules-grid">
+        <div class="c-card-menu" *ngFor="let subModule of activeModule.subModules" (click)="selectSubModule(subModule)">
+          <mat-icon class="icon-menu">{{subModule.icon}}</mat-icon>
           <div class="info-card-menu">
-            <h1>{{activeModule?.name}}</h1>
-            <h2>{{activeModule?.description || '-'}}</h2>
+            <h1>{{subModule.name}}</h1>
+            <h2>{{subModule.description}}</h2>
           </div>
+          <mat-icon *ngIf="subModule.sections?.length" class="icon-right">arrow_forward_ios</mat-icon>
         </div>
-
-        <hr>
-
-        <mat-accordion displayMode="flat" class="section-accordion">
-          <mat-expansion-panel *ngFor="let section of activeModule?.sections || []"
-            [expanded]="expandedSections[section.id]">
-            <mat-expansion-panel-header>
-              <mat-panel-title (click)="toggleSection(section.id, $event)">
-                <mat-icon class="section-icon">folder</mat-icon>
-                <span class="section-title">{{section.name}}</span>
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <mat-nav-list>
-              <a mat-list-item *ngFor="let item of section.items || []" [routerLink]="item.route">
-                <mat-icon matListItemIcon>{{item.icon}}</mat-icon>
-                <span matListItemTitle>{{item.name}}</span>
-              </a>
-            </mat-nav-list>
-          </mat-expansion-panel>
-        </mat-accordion>
       </div>
-    </ng-template>
+    </ng-container>
 
-    <div class="c-sidenav-footer">
-      <div class="user-info">
-        <mat-icon>account_circle</mat-icon>
-        <span>Admin</span>
+    <!-- Nivel 3 y 4 - Secciones -->
+    <ng-container *ngIf="activeSubModule">
+      <div class="c-return-menu" (click)="returnToSubModules()">
+        <mat-icon>arrow_back</mat-icon>
+        <span>{{activeModule?.name}}</span>
       </div>
-    </div>
-  </mat-sidenav>
 
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <button mat-icon-button (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
+      <div class="c-sub-menu-title">
+        <mat-icon class="icon-menu">{{activeSubModule.icon}}</mat-icon>
+        <div class="info-card-menu">
+          <h1>{{activeSubModule.name}}</h1>
+          <h2>{{activeSubModule.description}}</h2>
+        </div>
+      </div>
 
-      <span class="spacer"></span>
+      <hr>
 
-      <button mat-icon-button>
-        <mat-icon>notifications</mat-icon>
-      </button>
+      <mat-accordion displayMode="flat" class="section-accordion">
+        <mat-expansion-panel *ngFor="let section of activeSubModule.sections" [expanded]="true">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon class="section-icon">folder</mat-icon>
+              <span class="section-title">{{section.name}}</span>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
 
-      <button mat-icon-button>
-        <mat-icon>account_circle</mat-icon>
-      </button>
-    </mat-toolbar>
-
-    <main>
-      <router-outlet></router-outlet>
-    </main>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+          <mat-nav-list>
+            <a mat-list-item *ngFor="let item of section.items" [routerLink]="item.route">
+              <mat-icon matListItemIcon>{{item.icon}}</mat-icon>
+              <span matListItemTitle>{{item.name}}</span>
+            </a>
+          </mat-nav-list>
+        </mat-expansion-panel>

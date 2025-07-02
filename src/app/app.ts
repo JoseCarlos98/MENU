@@ -1,5 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
-import { NavigationService, Module, Section } from './service/navigation.service';
+import { NavigationService, Module, Section, SubModule } from './service/navigation.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
@@ -33,6 +33,7 @@ export class App implements OnInit {
   activeModule: Module | null = null;
   isSidebarOpen = true;
   expandedSections: { [key: string]: boolean } = {};
+  activeSubModule: SubModule  | null = null;
 
   constructor(private navigationService: NavigationService) { }
 
@@ -49,18 +50,22 @@ export class App implements OnInit {
     });
   }
 
-  selectModule(moduleId: string) {
-    this.navigationService.setActiveModule(moduleId);
+  selectModule(module: Module): void {
+    this.activeModule = module;
+    this.activeSubModule = null;
   }
 
-  returnToMainMenu() {
-    this.navigationService.setActiveModule(null);
+  selectSubModule(subModule: SubModule): void {
+    this.activeSubModule = subModule;
   }
 
-  toggleSection(sectionId: string, event: Event): void {
-    // event.stopPropagation();
-    // event.preventDefault();
-    this.expandedSections[sectionId] = !this.expandedSections[sectionId];
+  returnToMainMenu(): void {
+    this.activeModule = null;
+    this.activeSubModule = null;
+  }
+
+  returnToSubModules(): void {
+    this.activeSubModule = null;
   }
 
 }
