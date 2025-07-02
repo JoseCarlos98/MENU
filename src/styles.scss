@@ -165,8 +165,18 @@ body {
 
   .section-accordion {
     flex-grow: 1;
+    opacity: 0;
     overflow-y: auto;
     margin-bottom: 45px;
+    animation: cardEnter 0.4s ease forwards;
+    transition: 300ms all ease;
+    transform: translateY(10px);
+
+    @for $i from 1 through 10 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{$i * 0.05s};
+      }
+    }
 
     .mat-expansion-panel {
       box-shadow: none !important;
@@ -325,7 +335,6 @@ hr {
 
 .mat-drawer-inner-container {
   height: calc(100vh - 90px) !important;
-  overflow: unset !important;
 }
 
 .mdc-list-item__primary-text {
@@ -340,66 +349,6 @@ hr {
 .mat-mdc-list-base {
   padding-top: 0 !important;
 }
-
-// .section-accordion {
-//   .mat-expansion-panel {
-//     // transition: all 0.3s ease;
-//     // overflow: hidden;
-
-//     .mat-expansion-panel-header {
-//       transition: background-color 0.3s ease;
-
-//       &:hover {
-//         background-color: rgba(14, 166, 185, 0.08) !important;
-//       }
-
-//       .section-arrow {
-//         transition: transform 0.3s ease;
-//         margin-left: auto;
-//       }
-//     }
-
-//     &.mat-expanded {
-//       .section-arrow {
-//         transform: rotate(180deg);
-//       }
-//     }
-
-//     .mat-nav-list {
-//       .menu-item {
-//         transition: all 0.2s ease;
-//         padding-left: 56px !important;
-
-//         &:hover {
-//           background-color: rgba(14, 166, 185, 0.04) !important;
-//           transform: translateX(4px);
-
-//           mat-icon {
-//             color: #0ea6b9 !important;
-//           }
-//         }
-
-//         &::before {
-//           content: '';
-//           position: absolute;
-//           left: 40px;
-//           top: 50%;
-//           transform: translateY(-50%);
-//           width: 4px;
-//           height: 4px;
-//           background-color: #0ea6b9;
-//           border-radius: 50%;
-//           opacity: 0;
-//           transition: opacity 0.3s ease;
-//         }
-
-//         &:hover::before {
-//           opacity: 1;
-//         }
-//       }
-//     }
-//   }
-// }
 
 .module-menu-container {
   animation: fadeIn 0.3s ease-out;
